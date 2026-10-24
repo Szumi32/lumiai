@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LumiAI — Ekran AI przed oczami</title>
+<meta name="description" content="LumiAI: inteligentna soczewka medyczna z tłumaczeniem na żywo, ekranem AI i sterowaniem gestami. Fikcyjny koncept startupu.">
+<meta property="og:title" content="LumiAI — Ekran AI przed oczami. Niewidoczny dla innych.">
+<meta property="og:description" content="Inteligentna soczewka medyczna z tłumaczeniem na żywo, ekranem AI i sterowaniem gestami. Fikcyjny koncept startupu.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0B0C0E">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+/* flaga animacji; jeśli skrypt strony się nie uruchomi, po 3 s pokazujemy wszystko bez animacji */
+(function(d){d.classList.add('js');setTimeout(function(){if(!window.__lumi){d.classList.remove('js')}},3000)})(document.documentElement);
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/premium.css">
+
+</head>
+<body>
+<a class="skip-link" href="#zalety">Przejdź do treści</a>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="ld"><div class="ld-logo" id="ldlogo">LUMIAI</div><div class="ld-bar"><i></i></div></div>
+</div>
+<div class="grain" id="grain" aria-hidden="true"></div>
+
+<header class="hdr" id="hdr">
+  <a class="logo" href="#top" aria-label="LumiAI, początek strony">
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.2"/><circle cx="16" cy="16" r="8.5" stroke="currentColor" stroke-width="1.2"/><circle cx="16" cy="16" r="3" fill="currentColor"/><path d="M5 11.5A12 12 0 0 1 12 4.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55"/></svg>
+    <span>LUMIAI</span>
+  </a>
+  <nav class="nav" aria-label="Główna nawigacja">
+    <a href="#soczewka">Soczewka</a><a href="#film">Film</a><a href="#swiat">Tłumaczenie</a><a href="#demo">Demo</a><a href="#medycyna">Medycyna</a><a href="#konfigurator">Konfigurator</a><a href="#faq">FAQ</a>
+  </nav>
+  <div class="hdr-r">
+    <a class="hdr-app" href="app/" target="_blank" rel="noopener">Aplikacja ↗</a>
+    <a class="btn btn-gold btn-sm" href="#kontakt">Poznaj koncepcję</a>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="menu" id="menu">
+  <nav aria-label="Menu mobilne">
+    <a href="#soczewka" style="--i:0"><small>01</small>Soczewka</a>
+    <a href="#film" style="--i:1"><small>02</small>Film</a>
+    <a href="#swiat" style="--i:2"><small>03</small>Tłumaczenie</a>
+    <a href="#demo" style="--i:3"><small>04</small>Demo</a>
+    <a href="#medycyna" style="--i:4"><small>05</small>Medycyna</a>
+    <a href="#konfigurator" style="--i:5"><small>06</small>Konfigurator</a>
+    <a href="#faq" style="--i:6"><small>07</small>FAQ</a>
+    <a href="app/" target="_blank" rel="noopener" style="--i:7"><small>08</small>Aplikacja ↗</a>
+  </nav>
+  <a class="btn btn-gold" href="#kontakt">Poznaj koncepcję <span class="arr">→</span></a>
+</div>
+
+<main>
+
+<!-- ============ HERO: makro oka i wlot „do środka” ============ -->
+<section class="hero" id="top" aria-label="LumiAI">
+<div class="pin cinematic-hero">
+    <div class="scene-chapter" aria-hidden="true"><span id="scene-label">01 / SPOJRZENIE</span><i><b id="scene-progress"></b></i></div>
+    <a class="scene-skip" href="#soczewka">Pomiń intro ↓</a>
+    <canvas class="eye-cv" id="eyecv" aria-hidden="true"></canvas>
+    <div class="inside" id="inside" aria-hidden="true">
+      <canvas id="citycv"></canvas>
+      <div class="hud-frame"><i></i><i></i><i></i><i></i></div>
+      <div class="hcard hc1" id="hc1"><small>ZH → PL · na żywo <b class="dotlive"></b></small><p>Czy ma Pan ból głowy?</p></div>
+      <div class="hcard hc2" id="hc2"><small>Glukoza</small><p class="num">5,4<span>mmol/L ↗</span></p>
+        <svg viewBox="0 0 180 40" fill="none"><path d="M0 30 C20 28 30 22 45 24 S70 34 85 26 110 12 125 16 150 22 165 10 S176 8 180 8" stroke="#7FE3F0" stroke-width="1.6"/><circle cx="180" cy="8" r="3" fill="#7FE3F0"/></svg></div>
+      <div class="hcard hc3" id="hc3"><small>Gest</small><p>Mrugnij 2×, aby potwierdzić</p></div>
+      <p class="inside-t" id="it1">To widzisz<br>tylko <em>Ty.</em><small>Ekran AI na brzegu pola widzenia</small></p>
+    </div>
+    <div class="blackout" id="blackout"></div>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-copy" id="hcopy">
+      <p class="eyebrow">LumiAI One · Koncepcja inteligentnej soczewki</p>
+      <h1><span class="ln"><span>Ekran AI</span></span><span class="ln"><span>przed oczami.</span></span><em class="ln"><span>Niewidoczny dla innych.</span></em></h1>
+      <p class="lede">Tłumaczenie. Przypomnienia. AI.<br>W polu widzenia. Poza uwagą innych.</p>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="#kontakt">Poznaj koncepcję <span class="arr">→</span></a>
+        <a class="btn btn-line" href="#film"><span class="play" aria-hidden="true">▶</span> Obejrzyj film</a>
+      </div>
+    </div>
+    <ul class="hero-meta" id="hmeta">
+      <li style="--i:0"><b>0,28 mm</b>grubości</li>
+      <li style="--i:1"><b>40+</b>języków</li>
+      <li style="--i:2"><b>&lt; 300 ms</b>opóźnienia napisów</li>
+    </ul>
+    <div class="cue" id="cue" aria-hidden="true"><span>Przewiń · wejdź do środka</span><i></i></div>
+  </div>
+</section>
+
+<!-- ============ SOCZEWKA: produkt, specyfikacja, przekrój ============ -->
+<section class="lens s-light" id="soczewka" aria-label="Soczewka LumiAI One">
+  <div class="pin">
+    <a class="scene-skip lens-skip" href="#zalety">Pomiń prezentację ↓</a>
+    <h2 class="split2" id="split2"><span class="w1">Załóż</span><span class="w2">przyszłość.</span></h2>
+    <div class="lstage" aria-hidden="true">
+      <div class="lshadow" id="lshadow"></div>
+      <div class="lens3d" id="lens3d">
+        <div class="ly ly5" data-k="4"></div>
+        <div class="ly ly4" data-k="3"></div>
+        <div class="ly ly3" data-k="2"><i class="chip"></i></div>
+        <div class="ly ly2" data-k="1"></div>
+        <div class="ly ly1" data-k="0"></div>
+      </div>
+    </div>
+    <div class="spec" id="spec">
+      <p class="eyebrow">Soczewka sygnaturowa</p>
+      <h3>LumiAI One</h3>
+      <p class="idx">01 / Koncepcja urządzenia · bez certyfikacji</p>
+      <dl>
+        <div><dt>Grubość</dt><dd>0,28 mm</dd></div>
+        <div><dt>Tłumaczenie</dt><dd>40+ języków</dd></div>
+        <div><dt>Opóźnienie napisów</dt><dd>&lt; 300 ms</dd></div>
+        <div><dt>Praca na ładowaniu</dt><dd>16 h</dd></div>
+        <div><dt>Wymiana</dt><dd>co 30 dni</dd></div>
+      </dl>
+    </div>
+    <div class="claim" id="claim">
+      <p class="serif-xl">Twoje oko.<br><em>Twój ekran.</em></p>
+      <p>Obraz dla Ciebie. Naturalne spojrzenie dla innych. To cel projektu — do potwierdzenia w testach.</p>
+    </div>
+    <div class="xray" id="xray">
+      <p class="eyebrow">Technologia</p>
+      <h3 class="serif-l">Pięć warstw w&nbsp;mniej niż trzeciej części <em>milimetra.</em></h3>
+      <ol class="layers-list" id="llist">
+        <li data-k="0"><span>01</span><b>Hydrożel zewnętrzny</b><em>90 µm</em><p>Miękka warstwa o wysokiej przepuszczalności tlenu, znana z klasycznych soczewek.</p></li>
+        <li data-k="1"><span>02</span><b>Matryca micro-LED</b><em>40 µm</em><p>Obraz widoczny tylko dla noszącego. Światło nie wychodzi poza soczewkę.</p></li>
+        <li data-k="2"><span>03</span><b>Chip AI i antena</b><em>30 µm</em><p>Tłumaczenie, gesty i dobór treści działają na urządzeniu. Ładowanie bezprzewodowe w etui.</p></li>
+        <li data-k="3"><span>04</span><b>Sensor łzowy</b><em>20 µm</em><p>Koncepcja analizy płynu łzowego. Wiarygodność pomiarów wymagałaby potwierdzenia klinicznego.</p></li>
+        <li data-k="4"><span>05</span><b>Hydrożel wewnętrzny</b><em>100 µm</em><p>Projektowana powierzchnia kontaktu z okiem. Elektronika miałaby znajdować się między warstwami hydrożelu.</p></li>
+      </ol>
+    </div>
+    <p class="lnote">Parametry to założenia projektowe fikcyjnej firmy, nie wyniki badań.</p>
+  </div>
+</section>
+
+<!-- ============ ZALETY ============ -->
+<section class="sec s-light" id="zalety">
+  <div class="wrap">
+    <div class="sh">
+      <p class="eyebrow" data-rv>Zalety</p>
+      <h2 class="h2 split" data-rv="split">Mniej rozpraszania.<br><em>Więcej możliwości.</em></h2>
+      <p class="lede" data-rv>Osiem funkcji. Jedna dyskretna forma.</p>
+      <div class="badges" data-rv><span class="badge"><i></i>0,28 mm</span><span class="badge"><i></i>40+ języków</span><span class="badge"><i></i>16 h pracy</span><span class="badge"><i></i>bez nagrywania</span></div>
+    </div>
+    <div class="fgrid">
+      <article class="f" data-rv><span class="fn">01</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2M6 5c.5 4 3 7 7 9M12 5c-.5 4-3 7-8 9"/><path d="M14 21l4-10 4 10M15.4 18h5.2"/></svg></div><h3>Tłumaczenie języków na żywo</h3><p>Rozmówca mówi. Ty widzisz napisy. Bez spoglądania na telefon.</p></article>
+      <article class="f" data-rv><span class="fn">02</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Ekran AI tuż przed oczami</h3><p>Napisy, odczyty, przypomnienia. Tylko to, czego potrzebujesz w danej chwili.</p></article>
+      <article class="f" data-rv><span class="fn">03</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a1.5 1.5 0 013 0v5M12 10V4a1.5 1.5 0 013 0v7M15 11V6.5a1.5 1.5 0 013 0V14a7 7 0 01-7 7h-1a6 6 0 01-5-3l-2.5-4a1.5 1.5 0 012.3-1.8L9 15"/></svg></div><h3>Sterowanie gestami</h3><p>Mrugnięcie. Spojrzenie. Skinienie. Twoje ręce zostają wolne.</p></article>
+      <article class="f" data-rv><span class="fn">04</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div><h3>Monitoring zdrowia w tle</h3><p>Trendy zdrowotne pod ręką. Odczyty w demo są symulacją.</p></article>
+      <article class="f" data-rv><span class="fn">05</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Niewidoczna dla otoczenia</h3><p>Z założenia przezroczysta. Bez zewnętrznego ekranu. Tylko Twoje spojrzenie.</p></article>
+      <article class="f" data-rv><span class="fn">06</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div><h3>Prywatność z założenia</h3><p>Cel projektu: analiza lokalna. Bez zapisywania obrazu i rozmów.</p></article>
+      <article class="f" data-rv><span class="fn">07</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 13A9 9 0 1111 3a7 7 0 0010 10z"/></svg></div><h3>Kontrola snu</h3><p>Koncepcja nocnego wariantu. Rano: zwięzły obraz odpoczynku.</p></article>
+      <article class="f" data-rv><span class="fn">08</span><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Przypomnienia o wymianie</h3><p>Dni noszenia. Termin wymiany. Kolejna wizyta. W jednym miejscu.</p></article>
+    </div>
+  </div>
+</section>
+
+<div class="marq s-light" aria-hidden="true">
+  <div class="marq-in">
+    <span>Dzień dobry <i>✦</i></span><span class="zh">你好 <i>✦</i></span><span>Hello <i>✦</i></span><span>Hola <i>✦</i></span><span>Привіт <i>✦</i></span><span>こんにちは <i>✦</i></span><span>Bonjour <i>✦</i></span><span>Guten Tag <i>✦</i></span><span>Ciao <i>✦</i></span><span>Merhaba <i>✦</i></span><span>안녕하세요 <i>✦</i></span>
+    <span>Dzień dobry <i>✦</i></span><span class="zh">你好 <i>✦</i></span><span>Hello <i>✦</i></span><span>Hola <i>✦</i></span><span>Привіт <i>✦</i></span><span>こんにちは <i>✦</i></span><span>Bonjour <i>✦</i></span><span>Guten Tag <i>✦</i></span><span>Ciao <i>✦</i></span><span>Merhaba <i>✦</i></span><span>안녕하세요 <i>✦</i></span>
+  </div>
+</div>
+
+<!-- ============ FILM ============ -->
+<section class="sec s-dark" id="film">
+  <div class="wrap">
+    <div class="sh sh-row">
+      <div><p class="eyebrow" data-rv>Film koncepcyjny</p><h2 class="h2 split" data-rv="split" style="margin-top:26px">Dzień z LumiAI. <em>Twoimi oczami.</em></h2></div>
+      <p class="lede" data-rv>Jedna minuta. Jeden dzień z LumiAI.<br>Zobacz symulację oczami użytkownika.</p>
+    </div>
+    <div class="player" id="player" data-rv="scale">
+      <div class="screen" id="screen">
+        <canvas id="filmcv" aria-hidden="true"></canvas>
+        <div class="hudf" id="hudf" aria-hidden="true"><i></i><i></i><i></i><i></i><span class="tl">LumiAI · widok użytkownika</span><span class="tr" id="fclock">18:42 · 82%</span></div>
+
+        <div class="fe f-cal" data-s="0" data-in="0.5">Kalibracja soczewki<b id="calp">0%</b></div>
+        <div class="fe f-title" data-s="0" data-in="4.4"><small>Gotowe</small>Soczewka jest<br><em>niewidoczna.</em></div>
+
+        <div class="fe bub f-q" data-s="1,2" data-cue="q"><small>Przechodzień · chiński</small><span class="zh" lang="zh-CN">请问，去中央火车站怎么走？</span><em>Qǐngwèn, qù zhōngyāng huǒchēzhàn zěnme zǒu?</em></div>
+        <div class="fe fx f-tr" data-s="2" data-in="0.3"><small><span class="wave"><b></b><b></b><b></b><b></b></span>Chiński → polski · na żywo</small><span class="big"><span id="typ1"></span><i class="caret"></i></span></div>
+
+        <div class="fe fx f-rep" data-s="3" data-in="0.3"><small>Podpowiedź · powiedz po chińsku</small>
+          <span class="big kw zh" lang="zh-CN" id="kw1"><span>一直往前走，</span><span>然后</span><span>左转。</span></span>
+          <span class="mean">= Proszę iść prosto, a potem skręcić w lewo.</span>
+          <span class="sub kw" id="kw2"><span>Yìzhí wǎng qián zǒu, </span><span>ránhòu </span><span>zuǒ zhuǎn.</span></span>
+          <span class="sub kw" id="kw3"><small style="margin:0 0 .5cqw">Wymowa po polsku</small><span>i-dżyj łang cjen dzou, </span><span>ran-hou </span><span>dzuo dżuan.</span></span>
+        </div>
+        <div class="fe bub me f-me" data-s="3" data-cue="me"><small>Ty · chiński</small><span class="zh" lang="zh-CN">一直往前走，然后左转。</span><em>Yìzhí wǎng qián zǒu, ránhòu zuǒ zhuǎn.</em></div>
+        <div class="fe bub f-thx" data-s="3" data-cue="thx"><small>Przechodzień</small><span class="zh" lang="zh-CN">谢谢！</span><em>Xièxie!</em></div>
+        <div class="fe fx f-tr2" data-s="3" data-cue="tr2"><small>Tłumaczenie</small><span class="big">Dziękuję bardzo!</span></div>
+
+        <div class="fe fx f-glu" data-s="4" data-in="0.6"><small>Glukoza · ostrzeżenie</small>
+          <div class="gv"><b>4,1</b><span>mmol/L ↘</span></div>
+          <svg viewBox="0 0 300 60" preserveAspectRatio="none" fill="none"><path d="M0 14 C40 12 60 18 90 16 S140 20 170 26 220 40 250 46 280 50 300 54" stroke="rgba(242,196,107,.25)" stroke-width="8" stroke-linecap="round"/><path class="ln2" d="M0 14 C40 12 60 18 90 16 S140 20 170 26 220 40 250 46 280 50 300 54" stroke="#F2C46B" stroke-width="2"/></svg>
+          <span class="mean">Spada szybciej niż zwykle. Zjedz coś w ciągu 15 minut.</span></div>
+
+        <div class="fe fx f-med" data-s="5" data-in="0.5" id="fmed"><small>14:30 · przypomnienie o leku</small><span class="big">Metformina 500 mg</span>
+          <div class="row"><span class="wait">Potwierdź gestem: mrugnij 2×</span><span class="ok">✓ Potwierdzono</span></div></div>
+
+        <div class="fe f-title" data-s="6" data-in="1"><small>Widok obserwatora</small>Dla otoczenia —<br><em>zwykłe oko.</em></div>
+
+        <div class="fe f-end" data-s="7" data-in="0.2">
+          <div class="lg"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.2"/><circle cx="16" cy="16" r="8.5" stroke="currentColor" stroke-width="1.2"/><circle cx="16" cy="16" r="3" fill="currentColor"/></svg>LUMIAI</div>
+          <p>Ekran AI przed oczami.<br><em>Niewidoczny dla innych.</em></p>
+          <a class="btn btn-gold" href="#kontakt">Poznaj koncepcję <span class="arr">→</span></a>
+        </div>
+
+        <div class="lids" id="lids" aria-hidden="true"><i></i><i></i></div>
+        <div class="fx-vig" aria-hidden="true"></div>
+        <div class="fx-grain" id="fgrain" aria-hidden="true"></div>
+        <div class="dip" id="dip" aria-hidden="true"></div>
+        <button class="poster" id="poster" type="button">
+          <span class="pbig" aria-hidden="true">▶</span>
+          <b>Obejrzyj <em>film</em></b>
+          <small>około 1 minuty · z dźwiękiem</small>
+          <small class="warn" id="vwarn"></small>
+        </button>
+      </div>
+      <div class="pbar">
+        <button class="pp" id="pp" type="button" aria-label="Odtwórz film"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="ppi" d="M8 5v14l11-7z"/></svg></button>
+        <div class="pinfo"><span id="pch">01 / 08</span><b id="pti">Kalibracja</b></div>
+        <div class="segs" id="segs" role="group" aria-label="Rozdziały filmu"></div>
+        <span class="ptime" id="ptime">0:00</span>
+        <button class="pbtn" id="mute" type="button" aria-pressed="false">Dźwięk: wł.</button>
+        <button class="pbtn" id="vset" type="button" aria-expanded="false" aria-controls="vpanel">Głosy</button>
+      </div>
+      <div class="vpanel" id="vpanel" hidden>
+        <label>Lektor (polski)<select id="v-narr"></select></label>
+        <label>Tłumacz (polski)<select id="v-tr"></select></label>
+        <label>Rozmówca (chiński)<select id="v-zh"></select></label>
+        <button class="btn btn-line btn-sm" id="vtest" type="button">Odsłuchaj</button>
+        <p class="note">Najlepiej brzmią głosy oznaczone „Natural”, „Online” lub „Google” (Edge i Chrome). Głos chiński musi być zainstalowany w systemie. Własne nagrania lektora możesz wgrać do folderu <b>audio/</b> (opis w pliku assets/film.js).</p>
+      </div>
+      <p class="caps" id="caps" aria-live="polite"></p>
+    </div>
+    <p class="note" style="margin-top:28px">Animacja koncepcyjna. Nie przedstawia działającego urządzenia, a teksty obcojęzyczne są przykładowe.</p>
+  </div>
+</section>
+
+<!-- ============ ŚWIAT: tłumaczenie bez granic ============ -->
+<section class="world s-dark" id="swiat">
+  <p class="bigword" aria-hidden="true">Bez granic.</p>
+  <canvas id="globe" aria-hidden="true"></canvas>
+  <div class="wrap world-in">
+    <div data-rv="scale">
+      <div class="pass" id="pass">
+        <div class="pass-top"><span>LUMIAI</span><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="13" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="7" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="2.4" fill="currentColor"/></svg></div>
+        <p class="pass-t">Twoje słowa.<br>Każdy język.</p>
+        <div class="pass-cut" aria-hidden="true"></div>
+        <div class="pass-route"><div><small>Z</small><b>Polski</b></div><span aria-hidden="true">→</span><div><small>Do</small><b id="plang" class="zh">中文</b></div></div>
+        <p class="pass-d">Napisy, zanim rozmówca skończy zdanie. Odpowiedź z podpowiedzią wymowy.</p>
+        <div class="pass-bot"><small>Opóźnienie &lt; 300 ms · analiza na urządzeniu</small><svg class="barcode" id="barcode" viewBox="0 0 110 34" aria-hidden="true"></svg></div>
+      </div>
+    </div>
+    <div class="world-copy">
+      <p class="eyebrow" data-rv>Tłumaczenie na żywo</p>
+      <h2 class="h2 split" data-rv="split">Rozmowa bez tłumacza. <em>W każdym języku.</em></h2>
+      <p class="lede" data-rv>Izba przyjęć. Apteka za granicą. Ulica.<br>Napisy w polu widzenia — na żywo.</p>
+      <div class="badges" data-rv><span class="badge"><i></i>na urządzeniu</span><span class="badge"><i></i>podpowiedź wymowy</span><span class="badge"><i></i>słownik medyczny</span></div>
+      <div class="stats" data-rv>
+        <div><b data-count="40" data-suf="+">40+</b><span>języków na start</span></div>
+        <div><b data-count="300" data-pre="&lt; " data-suf=" ms">&lt; 300 ms</b><span>opóźnienie napisów</span></div>
+        <div><b data-count="0">0</b><span>zapisanych rozmów</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO ============ -->
+<section class="sec s-light" id="demo">
+  <div class="wrap">
+    <div class="sh sh-row">
+      <div><p class="eyebrow" data-rv>Demo</p><h2 class="h2 split" data-rv="split" style="margin-top:26px">Sprawdź, co widzi <em>użytkownik.</em></h2></div>
+      <p class="lede" data-rv>Wybierz język, gest lub poziom glukozy.<br>Zobacz ekran soczewki na żywo.</p>
+    </div>
+    <div class="demo" data-rv="scale">
+      <div class="dtabs" role="tablist" id="dtabs">
+        <button type="button" role="tab" aria-selected="true" data-t="tr">Tłumaczenie</button>
+        <button type="button" role="tab" aria-selected="false" data-t="gs">Gesty</button>
+        <button type="button" role="tab" aria-selected="false" data-t="sl">Sen</button>
+        <button type="button" role="tab" aria-selected="false" data-t="gl">Symulator glukozy</button>
+      </div>
+      <div class="dbody" id="dbody" role="tabpanel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEDYCYNA ============ -->
+<section class="sec s-light s-cream" id="medycyna" style="padding-top:0">
+  <div class="wrap"><p class="section-context">SCENARIUSZE KONCEPCYJNE · Odczyty i funkcje zdrowotne w demo są fikcyjne.</p></div>
+  <div class="wrap">
+    <div class="sh" style="padding-top:clamp(96px,14vw,180px)">
+      <p class="eyebrow" data-rv>Zastosowania medyczne</p>
+      <h2 class="h2 split" data-rv="split">Zaprojektowana z lekarzami, <em>dla konkretnych pacjentów.</em></h2>
+    </div>
+    <div class="cases">
+      <div class="case" data-rv><span class="n">01</span><h3>Cukrzyca</h3><div><small>Problem</small><p>Częste nakłuwanie palca i widoczny glukometr w pracy lub w szkole.</p></div><div class="sol"><small>LumiAI</small><p>Ciągły pomiar z łez i dyskretny sygnał o trendzie na brzegu pola widzenia.</p></div></div>
+      <div class="case" data-rv><span class="n">02</span><h3>Niedosłuch</h3><div><small>Problem</small><p>Aparat słuchowy zwraca uwagę, a hałas utrudnia rozmowę.</p></div><div class="sol"><small>LumiAI</small><p>Napisy na żywo pod linią wzroku rozmówcy, z rozróżnieniem mówców.</p></div></div>
+      <div class="case" data-rv><span class="n">03</span><h3>Zaburzenia pamięci</h3><div><small>Problem</small><p>Trudność w rozpoznawaniu twarzy i pamiętaniu o lekach.</p></div><div class="sol"><small>LumiAI</small><p>Podpowiedź o relacji z osobą z kręgu zaufanych i łagodne przypomnienie o dawce.</p></div></div>
+      <div class="case" data-rv><span class="n">04</span><h3>Opieka międzynarodowa</h3><div><small>Problem</small><p>Bariera językowa na izbie przyjęć i w kontaktach z pacjentami z zagranicy.</p></div><div class="sol"><small>LumiAI</small><p>Tłumaczenie wywiadu medycznego na żywo, ze słownikiem terminów klinicznych.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONFIGURATOR ============ -->
+<section class="sec s-dark" id="konfigurator">
+  <div class="wrap">
+    <div class="sh sh-row">
+      <div><p class="eyebrow" data-rv>Konfigurator</p><h2 class="h2 split" data-rv="split" style="margin-top:26px">Dobierz funkcje. <em>Sprawdź czas pracy.</em></h2></div>
+      <p class="lede" data-rv>Wybierz profil albo funkcje.<br>Cel: 16 h przy pełnym zestawie.</p>
+    </div>
+    <div class="chips" id="personas" data-rv></div>
+    <div class="cfg">
+      <div class="toggles" id="tgl" data-rv></div>
+      <div class="out" id="cout" data-rv="scale"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EKOSYSTEM ============ -->
+<section class="sec s-light" id="ekosystem">
+  <div class="wrap">
+    <div class="sh">
+      <p class="eyebrow" data-rv>Ekosystem</p>
+      <h2 class="h2 split" data-rv="split">Soczewka dla pacjenta. <em>Panel dla lekarza i&nbsp;opiekuna.</em></h2>
+      <p class="lede" data-rv>Dane tylko za zgodą pacjenta.<br>Czytelne dla lekarza. Pomocne dla opiekuna.</p>
+    </div>
+    <div class="panelmock">
+      <div class="pm" data-rv>
+        <h3>Panel lekarza</h3>
+        <p class="sub">Czas w zakresie glukozy z ostatnich 14 dni · dane przykładowe</p>
+        <div class="tir" role="img" aria-label="72 procent czasu w zakresie, 20 procent powyżej, 8 procent poniżej">
+          <span class="a" style="width:72%">72%</span><span class="b" style="width:20%">20%</span><span class="c" style="width:8%">8%</span>
+        </div>
+        <div class="legend"><span><i style="background:#2F7D5D"></i>W zakresie 3,9–10,0 mmol/L</span><span><i style="background:#B88A2E"></i>Powyżej</span><span><i style="background:#A9473C"></i>Poniżej</span></div>
+        <p style="margin-top:24px;color:var(--fg2);font-size:.92rem">Trendy zamiast pojedynczych pomiarów. Zdalne progi i gesty.</p>
+      </div>
+      <div class="pm" data-rv>
+        <h3>Aplikacja opiekuna</h3>
+        <p class="sub">Zdarzenia z ostatnich godzin · dane przykładowe</p>
+        <div class="alerts">
+          <div><time>08:05</time><span>Pacjent potwierdził poranną dawkę leku.</span></div>
+          <div><time>11:40</time><span>Glukoza spadła poniżej progu ostrzeżenia, pacjent otrzymał sygnał w soczewce.</span></div>
+          <div><time>13:15</time><span>Wykryto upadek, wysłano powiadomienie do opiekuna za zgodą pacjenta.</span></div>
+          <div><time>14:30</time><span>Pacjent poprosił o pomoc gestem SOS.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POMYSŁY ============ -->
+<section class="sec s-light s-cream" id="pomysly">
+  <div class="wrap">
+    <div class="sh sh-row">
+      <div><p class="eyebrow" data-rv>Pomysły na rozwój</p><h2 class="h2 split" data-rv="split" style="margin-top:26px">Co jeszcze może <em>zrobić LumiAI.</em></h2></div>
+      <p class="lede" data-rv>Funkcje do sprawdzenia z lekarzami.<br>Filtruj według obszaru.</p>
+    </div>
+    <div class="chips" id="ifilter" data-rv>
+      <button type="button" data-f="all" aria-pressed="true">Wszystkie</button>
+      <button type="button" data-f="Zdrowie" aria-pressed="false">Zdrowie</button>
+      <button type="button" data-f="Komunikacja" aria-pressed="false">Komunikacja</button>
+      <button type="button" data-f="Bezpieczeństwo" aria-pressed="false">Bezpieczeństwo</button>
+      <button type="button" data-f="Dostępność" aria-pressed="false">Dostępność</button>
+    </div>
+    <div class="ideas" id="ideas"></div>
+  </div>
+</section>
+
+<!-- ============ PORÓWNANIE ============ -->
+<section class="sec s-light" id="technologia">
+  <div class="wrap">
+    <div class="sh">
+      <p class="eyebrow" data-rv>Porównanie</p>
+      <h2 class="h2 split" data-rv="split">Trzy podejścia.<br><em>Inna perspektywa.</em></h2>
+    </div>
+    <div class="tablewrap" data-rv tabindex="0" role="region" aria-label="Tabela — przewiń w poziomie na małym ekranie">
+      <table>
+        <thead><tr><th>Cecha</th><th class="us">LumiAI · wizja</th><th>Okulary AR</th><th>Telefon i aplikacje</th></tr></thead>
+        <tbody>
+          <tr><td>Widoczność dla otoczenia</td><td class="us yes">Niewidoczna</td><td class="no">Widoczne</td><td class="no">Widoczny</td></tr>
+          <tr><td>Wolne ręce</td><td class="us yes">Tak</td><td class="no">Częściowo</td><td class="no">Nie</td></tr>
+          <tr><td>Tłumaczenie w polu widzenia</td><td class="us yes">Tak</td><td class="yes">Tak</td><td class="no">Na ekranie telefonu</td></tr>
+          <tr><td>Pomiar glukozy w łzach</td><td class="us yes">Tak</td><td class="no">Nie</td><td class="no">Wymaga osobnego sensora</td></tr>
+          <tr><td>Sterowanie gestami</td><td class="us yes">Oczy i głowa</td><td class="no">Gesty rąk</td><td class="no">Dotyk</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WYMIANA ============ -->
+<section class="sec s-light" id="wymiana" style="padding-top:0">
+  <div class="wrap">
+    <div class="sh">
+      <p class="eyebrow" data-rv>Wymiana i pielęgnacja</p>
+      <h2 class="h2 split" data-rv="split">Co ile wymieniać <em>elementy systemu.</em></h2>
+      <p class="lede" data-rv>Soczewka miesięczna. Terminy pilnuje aplikacja.</p>
+    </div>
+    <div class="calc" data-rv>
+      <div><label for="wd">Data założenia obecnej soczewki</label><input id="wd" type="date"><p class="note" style="margin-top:14px">Zmień datę, a kalendarz wymian przeliczy się od razu.</p></div>
+      <div class="wl" id="wl"></div>
+    </div>
+    <div class="tablewrap" data-rv tabindex="0" role="region" aria-label="Tabela — przewiń w poziomie na małym ekranie">
+      <table>
+        <thead><tr><th>Element</th><th>Wymiana</th><th>Co robi pacjent</th></tr></thead>
+        <tbody>
+          <tr><td>Soczewka LumiAI</td><td>co 30 dni</td><td>Zdejmuje na noc do etui, a po 30 dniach zakłada nową</td></tr>
+          <tr><td>Wariant nocny (sen)</td><td>co 7 dni</td><td>Noszony tylko po decyzji lekarza, z krótszym cyklem</td></tr>
+          <tr><td>Sensor łzowy</td><td>kalibracja co 14 dni</td><td>Potwierdza pomiar kontrolny z glukometru</td></tr>
+          <tr><td>Patch za uchem</td><td>co 7 dni</td><td>Wymienia plaster z mikrofonami i anteną</td></tr>
+          <tr><td>Etui ładujące</td><td>co 12 miesięcy</td><td>Codziennie ładuje i czyści soczewkę</td></tr>
+          <tr><td>Modele AI i ustawienia</td><td>co 3 miesiące</td><td>Aktualizuje je lekarz podczas wizyty</td></tr>
+          <tr><td>Wizyta kontrolna u okulisty</td><td>co 6 miesięcy</td><td>Badanie oka i ocena wyników z panelu lekarza</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODEL + PLAN ============ -->
+<section class="sec s-dark" id="plan">
+  <div class="wrap">
+    <div class="sh">
+      <p class="eyebrow" data-rv>Model biznesowy</p>
+      <h2 class="h2 split" data-rv="split">Wdrożenie przez kliniki. <em>Abonament dla pacjenta.</em></h2>
+      <p class="lede" data-rv>Trzy ścieżki rozwoju. Wspólny punkt wyjścia: opieka specjalisty. To proponowany model, nie oferta.</p>
+    </div>
+    <div class="biz">
+      <article data-rv><span class="n">01</span><h3>Kliniki i szpitale</h3><p>Tłumaczenie rozmów. Panel specjalisty. Jeden system opieki.</p></article>
+      <article data-rv><span class="n">02</span><h3>Abonament pacjenta</h3><p>Soczewki. Etui. Aplikacja. Aktualizacje. W jednym planie.</p></article>
+      <article data-rv><span class="n">03</span><h3>Ubezpieczyciele</h3><p>Potencjalne partnerstwa po potwierdzeniu skuteczności i bezpieczeństwa.</p></article>
+    </div>
+    <div class="sh" style="margin-bottom:64px">
+      <p class="eyebrow" data-rv>Droga do pacjenta</p>
+      <h2 class="h2 split" data-rv="split">Proponowana droga<br><em>od wizji do produktu.</em></h2>
+    </div>
+    <div class="road" id="road">
+      <i class="rl" aria-hidden="true"></i>
+      <article data-rv><b>2026</b><h3>Prototyp</h3><p>Sensor łzowy i matryca micro-LED na modelu oka.</p></article>
+      <article data-rv><b>2027</b><h3>Badanie bezpieczeństwa</h3><p>Pierwsi ochotnicy, noszenie do 4 godzin pod opieką okulisty.</p></article>
+      <article data-rv><b>2028</b><h3>Badanie kliniczne</h3><p>Pacjenci z cukrzycą i niedosłuchem oraz test tłumaczenia w klinikach.</p></article>
+      <article data-rv><b>2030</b><h3>Znak CE i start</h3><p>Rejestracja jako wyrób medyczny i pierwsze wdrożenia w klinikach.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec s-dark principles" id="podejscie"><div class="wrap">
+<div class="sh sh-row"><div><p class="eyebrow" data-rv>Nasze podejście</p><h2 class="h2" data-rv>Ambitna wizja.<br><em>Jasne zasady.</em></h2></div><p class="lede" data-rv>Mniej zakłóceń. Więcej kontroli.<br>Trzy zasady, od których zaczynamy.</p></div>
+<div class="principle-grid"><article data-rv><span>01 / UWAGA</span><h3>Obecność zamiast rozproszenia.</h3><p>Właściwa informacja. Właściwy moment. Reszta należy do Ciebie.</p></article><article data-rv><span>02 / KONTROLA</span><h3>Użytkownik wybiera zakres.</h3><p>Wybierz funkcje. Sprawdź czas pracy. Zobacz różnicę w konfiguratorze.</p></article><article data-rv><span>03 / TRANSPARENTNOŚĆ</span><h3>Koncepcja bez niedomówień.</h3><p>To koncept, nie gotowy produkt. Parametry wymagają badań.</p></article></div>
+</div></section>
+<!-- ============ FAQ ============ -->
+<section class="sec s-light" id="faq">
+  <div class="wrap faqg">
+    <div class="sh" style="margin:0;align-self:start;position:sticky;top:120px">
+      <p class="eyebrow" data-rv>FAQ</p>
+      <h2 class="h2 split" data-rv="split">Najczęstsze <em>pytania.</em></h2>
+      <p class="lede" data-rv>Krótko o funkcjach, ograniczeniach i dostępności.</p>
+    </div>
+    <div>
+      <details data-rv><summary>Czy inni naprawdę nie zobaczą, że mam soczewkę?<i></i></summary><div class="ans"><p>Taki jest cel: przezroczysta, bez diod i ekranu. Do potwierdzenia w badaniach.</p></div></details>
+      <details data-rv><summary>Jakie języki będą obsługiwane?<i></i></summary><div class="ans"><p>40+ na start. Najpierw: angielski, chiński, niemiecki, ukraiński, hiszpański, japoński.</p></div></details>
+      <details data-rv><summary>Jak działa sterowanie gestami?<i></i></summary><div class="ans"><p>Mrugnięcie, spojrzenie, ruch głowy. Zestaw gestów dopasowany do pacjenta.</p></div></details>
+      <details data-rv><summary>Co ile trzeba wymieniać soczewkę?<i></i></summary><div class="ans"><p>Co 30 dni. Wariant nocny co 7 dni, kalibracja sensora co 14 dni. Aplikacja przypomina.</p></div></details>
+      <details data-rv><summary>Jak soczewka kontroluje sen?<i></i></summary><div class="ans"><p>Wariant nocny śledzi ruchy oczu i przebudzenia. Rano: fazy snu. Pod nadzorem lekarza.</p></div></details>
+      <details data-rv><summary>Czy soczewka nagrywa to, co widzę i słyszę?<i></i></summary><div class="ans"><p>Nie. Bez zapisu obrazu i dźwięku. Strumień znika po przetworzeniu.</p></div></details>
+      <details data-rv><summary>Czy produkt jest dostępny?<i></i></summary><div class="ans"><p>Nie. LumiAI to fikcyjny koncept startupu.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APLIKACJA ============ -->
+<section class="sec s-dark" id="aplikacja">
+  <div class="wrap appg">
+    <div>
+      <p class="eyebrow" data-rv>Aplikacja mobilna</p>
+      <h2 class="h2 split" data-rv="split" style="margin-top:26px">Cała soczewka <em>w Twoim telefonie.</em></h2>
+      <ul data-rv>
+        <li>Tłumacz z podpowiedzią wymowy<span>01</span></li>
+        <li>Glukoza, sen i wskaźniki zdrowia<span>02</span></li>
+        <li>Kalendarz wymian i kalibracji<span>03</span></li>
+        <li>Krąg zaufanych i alarm SOS<span>04</span></li>
+      </ul>
+      <a class="btn btn-gold" href="app/" target="_blank" rel="noopener">Otwórz aplikację <span class="arr">↗</span></a>
+      <p class="note" style="margin-top:20px">Interaktywna makieta. Dane są przykładowe.</p>
+    </div>
+    <div class="phone" id="phone" data-rv="scale">
+      <span class="notch" aria-hidden="true"></span>
+      <div class="ph-ph" id="phph"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAKT ============ -->
+<section class="contact s-dark" id="kontakt" style="border-top:1px solid var(--lineD)">
+  <div class="wrap cgrid">
+    <div>
+      <p class="eyebrow" data-rv>Poznaj koncepcję</p>
+      <h2 class="h2 split" data-rv="split" style="margin:26px 0 28px">Współtwórz pierwszą <em>wersję LumiAI.</em></h2>
+      <p class="lede" data-rv>Sprawdź formularz kontaktu.<br>Bez wysyłania danych. Bez zapisu na listę.</p>
+    </div>
+    <form id="form" novalidate data-rv>
+      <p class="form-disclosure">DEMO FORMULARZA · Dane nie opuszczają przeglądarki.</p>
+      <div class="fld"><input id="nm" placeholder=" " autocomplete="name"><label for="nm">Imię i nazwisko</label></div>
+      <div class="fld"><input id="em" type="email" placeholder=" " autocomplete="email" required><label for="em">Adres e-mail</label></div>
+      <div class="fld sel"><select id="role"><option>Jestem pacjentem</option><option>Jestem lekarzem</option><option>Reprezentuję klinikę</option><option>Jestem inwestorem</option></select><label for="role">Rola</label><i class="chev" aria-hidden="true"></i></div>
+      <button class="btn btn-gold" type="submit">Przetestuj formularz <span class="arr">→</span></button>
+      <p id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="s-dark">
+  <div class="wrap">
+    <div class="fgrid2">
+      <div>
+        <h4>O projekcie</h4>
+        <p><b style="color:var(--fg)">LumiAI</b> to fikcyjna firma i fikcyjny produkt, stworzone jako koncept startupu medycznego. Soczewka nie istnieje, a wszystkie parametry, daty i funkcje są założeniami projektowymi. Formularz jest demonstracją i nie wysyła żadnych danych.</p>
+      </div>
+      <div>
+        <h4>Autor projektu</h4>
+        <div class="team"><span>Szymon Brzozowski</span></div>
+      </div>
+      <div>
+        <h4>Na stronie</h4>
+        <ul><li><a href="#soczewka">Soczewka</a></li><li><a href="#film">Film</a></li><li><a href="#swiat">Tłumaczenie</a></li><li><a href="#demo">Demo</a></li><li><a href="#faq">FAQ</a></li><li><a href="app/" target="_blank" rel="noopener">Aplikacja ↗</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <p class="wordmark" id="wordmark" aria-hidden="true">LumiAI</p>
+  <div class="wrap fbot"><span>© 2026 LumiAI · koncept</span><a href="#top" class="link">Wróć na górę ↑</a></div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/film.js"></script>
+<script src="assets/premium.js"></script>
+<script src="assets/highend.js"></script>
+<script src="assets/motion.js"></script>
+</body>
+</html>
